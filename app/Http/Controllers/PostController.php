@@ -21,15 +21,19 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
+        $post = new Post();
+        $post->titulo = $request->titulo;
+        $post->texto = $request->texto;
+        $post->publicado = $request->has('publicado');
+        $post->save();
+        return redirect()->route('posts.index');
     }
 
     /**
